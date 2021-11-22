@@ -4,6 +4,7 @@ import 'package:crypto_assist/methods/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class LoggedInWidget extends StatelessWidget {
@@ -14,17 +15,36 @@ class LoggedInWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("CryptoAssist"),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(
+                FontAwesomeIcons.alignLeft,
+                size: 22,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        title: Text(
+          "CRYPTO ASSIST",
+          style: TextStyle(
+            letterSpacing: 3,
+          ),
+        ),
         actions: [
-          TextButton(
+          IconButton(
               onPressed: () {
                 final provider =
                     Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.googleLogout();
               },
-              child: Text(
-                "Logout",
-                style: TextStyle(color: Colors.white),
+              icon: Icon(
+                FontAwesomeIcons.signOutAlt,
+                size: 22,
               ))
         ],
       ),
@@ -43,13 +63,18 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          // ignore: prefer_const_constructors
           DrawerHeader(
             padding: EdgeInsets.zero,
             child: UserAccountsDrawerHeader(
               margin: EdgeInsets.zero,
-              accountName: Text(user.displayName!),
-              accountEmail: Text(user.email!),
+              accountName: Text(
+                user.displayName!,
+                style: TextStyle(fontSize: 18),
+              ),
+              accountEmail: Text(
+                user.email!,
+                style: TextStyle(fontSize: 14),
+              ),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(user.photoURL!),
               ),
@@ -57,31 +82,37 @@ class MyDrawer extends StatelessWidget {
           ),
           const ListTile(
             leading: Icon(
-              CupertinoIcons.home,
+              FontAwesomeIcons.home,
               color: Colors.black,
+              size: 20,
             ),
             title: Text(
               "Home",
+              style: TextStyle(letterSpacing: 2),
               textScaleFactor: 1.2,
             ),
           ),
           const ListTile(
             leading: Icon(
-              CupertinoIcons.profile_circled,
+              FontAwesomeIcons.user,
               color: Colors.black,
+              size: 20,
             ),
             title: Text(
               "Profile",
+              style: TextStyle(letterSpacing: 2),
               textScaleFactor: 1.2,
             ),
           ),
           const ListTile(
             leading: Icon(
-              CupertinoIcons.mail,
+              FontAwesomeIcons.envelope,
               color: Colors.black,
+              size: 20,
             ),
             title: Text(
               "Mail",
+              style: TextStyle(letterSpacing: 2),
               textScaleFactor: 1.2,
             ),
           )

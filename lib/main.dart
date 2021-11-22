@@ -2,6 +2,7 @@
 
 import 'package:crypto_assist/methods/google_sign_in.dart';
 import 'package:crypto_assist/pages/homepage.dart';
+import 'package:crypto_assist/widgets/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       create: (context) => GoogleSignInProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.system,
+        theme: MyTheme.lightTheme(context),
+        darkTheme: MyTheme.darkTheme(context),
         home: HomePage(),
         title: 'Flutter Demo',
       ),

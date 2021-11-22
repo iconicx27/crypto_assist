@@ -23,19 +23,34 @@ class SignUp extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const SizedBox(
-              height: 70.0,
+              height: 40.0,
+            ),
+            Text(
+              "Welcome to CryptoAssist",
+              style: const TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 50.0,
             ),
             ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                    minimumSize: Size(300, 50), primary: Colors.grey.shade800),
+                    minimumSize: Size(280, 50), primary: Colors.grey.shade800),
                 onPressed: () {
                   final provider =
                       Provider.of<GoogleSignInProvider>(context, listen: false);
 
                   provider.googleLogin();
                 },
-                icon: FaIcon(FontAwesomeIcons.google),
-                label: Text("Sign Up with Google"))
+                icon: FaIcon(
+                  FontAwesomeIcons.google,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                label: Text("Sign Up with Google",
+                    style: TextStyle(color: Colors.white, fontSize: 17)))
           ],
         ),
       ),
