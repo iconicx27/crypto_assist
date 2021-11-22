@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:crypto_assist/methods/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -26,7 +28,12 @@ class SignUp extends StatelessWidget {
             ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(300, 50), primary: Colors.grey.shade800),
-                onPressed: () {},
+                onPressed: () {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+
+                  provider.googleLogin();
+                },
                 icon: FaIcon(FontAwesomeIcons.google),
                 label: Text("Sign Up with Google"))
           ],
